@@ -9,6 +9,8 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CadastroPage } from '../pages/cadastro/cadastro';
+import { DbAgendaProvider } from '../providers/db-agenda/db-agenda';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,7 +34,8 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DbAgendaProvider
   ]
 })
 export class AppModule {}

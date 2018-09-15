@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DbAgendaProvider } from '../../providers/db-agenda/db-agenda';
 
 /**
  * Generated class for the CadastroPage page.
@@ -12,6 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-cadastro',
   templateUrl: 'cadastro.html',
+  providers: [DbAgendaProvider]
 })
 export class CadastroPage {
 
@@ -19,7 +21,10 @@ export class CadastroPage {
   public telefone:string;
   public nascimento:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public dbAgendaProvider:DbAgendaProvider) {
   }
 
   ionViewDidLoad() {
@@ -28,11 +33,23 @@ export class CadastroPage {
 
   salvar(){
     let contato = {
+      _id:this.gerarId().toString(),
       nome:this.nome,
       telefone:this.telefone,
       nascimento:this.nascimento
     }
-    console.log("salvando contato: ", contato);
+    this.dbAgendaProvider.adicionar(contato).subscribe(
+      data => {
+        console.log("contato salvo: ", data);
+      },
+      err => {
+        console.log("erro ao salvar contato: ", err);
+      }
+    );
+  }
+
+  public gerarId():Number{
+    return Math.floor(Math.random() * 100000000)
   }
 
 }
