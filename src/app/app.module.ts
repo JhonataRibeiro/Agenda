@@ -11,13 +11,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { DbAgendaProvider } from '../providers/db-agenda/db-agenda';
 import { HttpClientModule } from '@angular/common/http'; 
+import { ListarPage } from '../pages/listar/listar';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    CadastroPage
+    CadastroPage,
+    ListarPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp,
     HomePage,
     ListPage,
-    CadastroPage
+    CadastroPage,
+    ListarPage
   ],
   providers: [
     StatusBar,

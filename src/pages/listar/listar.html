@@ -1,0 +1,28 @@
+<!--
+  Generated template for the ListarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Listar</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let contato of listaContatos">
+      <ion-avatar item-start>
+        <img src="https://www.clker.com/cliparts/4/e/9/1/1352230789343623747Blank%20Avatar.svg.med.png">
+      </ion-avatar>
+      <h2>{{contato.doc.nome}}</h2>
+      <h3>{{contato.doc.telefone}}</h3>
+      <p>{{contato.doc.nascimento}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
