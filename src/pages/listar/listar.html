@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button right ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Listar</ion-title>
@@ -18,7 +18,7 @@
   <ion-list>
     <ion-item *ngFor="let contato of listaContatos">
       <ion-avatar item-start>
-        <img src="contato.doc.foto">
+        <img [src]="contato.doc.foto">
       </ion-avatar>
       <h2>{{contato.doc.nome}}</h2>
       <h3>{{contato.doc.telefone}}</h3>
