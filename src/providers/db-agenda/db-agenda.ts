@@ -34,7 +34,8 @@ export class DbAgendaProvider {
   }
 
   public removeContato(contato): Observable<any> {
-    return Observable.from(this.db.remove(contato))
+    console.log("removendo: ", contato.doc._id)
+    return Observable.from(this.localDb.remove(contato.doc._id, contato.doc._rev))
   }
 
 

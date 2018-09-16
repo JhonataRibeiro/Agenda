@@ -37,6 +37,16 @@ export class ListarPage {
     )
   }
 
+  deletarConatato(contato){
+    this.dbAgendaProvider.removeContato(contato).subscribe(
+      data => {
+        this.listarConatatos();
+      },err=>{
+        console.log("error", err)
+      }
+    )
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListarPage');
   }
