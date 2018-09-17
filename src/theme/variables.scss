@@ -72,6 +72,18 @@ $colors: (
 
 @import "ionic.theme.default";
 
+.toolbar-background-md{
+  background: #802121 !important;
+}
+
+.toolbar-title-md{
+  color:#fff !important;
+}
+
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+  color:#fff !important;
+}
+
 
 // Ionicons
 // --------------------------------------------------
