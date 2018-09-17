@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -16,18 +16,26 @@ export class MyApp {
 
   rootPage: any = ListarPage;
 
-  pages: Array<{title: string, component: any}>;
+  // pages: Array<{title: string, component: any}>;
+  pages: Array<any>;
+  selectedMenu: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public menuCtrl: MenuController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      // { title: 'Home', component: HomePage },
-      // { title: 'List', component: ListPage },
-      { title: 'Cadastrar', component: CadastroPage },
-      { title: 'Listar', component: ListarPage }
-    ];
+    // this.pages = [
+    //   // { title: 'Home', component: HomePage },
+    //   // { title: 'List', component: ListPage },
+    //   { title: 'Cadastrar', component: CadastroPage },
+    //   { title: 'Listar', component: ListarPage }
+    // ];
+
+    this.pages = this.getSideMenus();
 
   }
 
@@ -40,9 +48,40 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
+  // openPage(page) {
+  //   // Reset the content nav to have just this page
+  //   // we wouldn't want the back button to show in this scenario
+  //   this.nav.setRoot(page.component);
+  // }
+
+  openPage(page, index) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.component) {
+      this.nav.setRoot(page.component);
+      this.menuCtrl.close();
+    } else {
+      if (this.selectedMenu) {
+        this.selectedMenu = 0;
+      } else {
+        this.selectedMenu = index;
+      }
+    }
   }
+
+  getSideMenus() {
+    return [
+      {
+        title: 'Agenda',
+        subPages: [{
+          title: 'Cadastrar',
+          component: CadastroPage,
+        }, {
+          title: 'Listar',
+          component: ListarPage,
+        }]
+      }];
+  }
+
+
 }
