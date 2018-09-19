@@ -35,9 +35,9 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Data de Nascimento</ion-label>
-      <ion-input [(ngModel)]="nascimento" type="text"></ion-input>
-    </ion-item>
+        <ion-label>Data de nascimento</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="nascimento"></ion-datetime>
+      </ion-item>
 
     <button (click)="salvar()" ion-button full>Cadastrar</button>
 
