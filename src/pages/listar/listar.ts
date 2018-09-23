@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbAgendaProvider } from '../../providers/db-agenda/db-agenda';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the ListarPage page.
@@ -22,7 +23,8 @@ export class ListarPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public dbAgendaProvider:DbAgendaProvider) {
+    public dbAgendaProvider:DbAgendaProvider,
+    public alertController:AlertController) {
       this.listarConatatos();
   }
 
@@ -49,6 +51,30 @@ export class ListarPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListarPage');
+  }
+
+  confirmarDeletar(contato) {
+    let alert = this.alertController.create({
+      title: 'Confirm purchase',
+      message: `Você realmente deseja deletar ${contato.doc.nome}?`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Buy',
+          handler: () => {
+            console.log('Buy clicked');
+            this.deletarConatato(contato);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
