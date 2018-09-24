@@ -36,15 +36,32 @@ export class CadastroPage {
     console.log('ionViewDidLoad CadastroPage');
   }
 
+  // salvar(){
+  //   let contato = {
+  //     _id:this.gerarId().toString(),
+  //     nome:this.nome,
+  //     telefone:this.telefone,
+  //     nascimento:this.nascimento,
+  //     foto:this.foto
+  //   }
+  //   this.dbAgendaProvider.adicionar(contato).subscribe(
+  //     data => {
+  //       console.log("contato salvo: ", data);
+  //     },
+  //     err => {
+  //       console.log("erro ao salvar contato: ", err);
+  //     }
+  //   );
+  // }
+
   salvar(){
     let contato = {
-      _id:this.gerarId().toString(),
       nome:this.nome,
       telefone:this.telefone,
       nascimento:this.nascimento,
       foto:this.foto
     }
-    this.dbAgendaProvider.adicionar(contato).subscribe(
+    this.dbAgendaProvider.adicionarContato(contato).subscribe(
       data => {
         console.log("contato salvo: ", data);
       },

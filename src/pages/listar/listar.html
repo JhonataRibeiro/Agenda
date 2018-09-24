@@ -15,7 +15,7 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <!-- <ion-list>
     <ion-item *ngFor="let contato of listaContatos">
       <ion-avatar item-start>
         <img [src]="contato.doc.foto">
@@ -23,6 +23,17 @@
       <h2>{{contato.doc.nome}}</h2>
       <h3>{{contato.doc.telefone}}</h3>
       <p>{{contato.doc.nascimento}}</p>
+      <ion-icon (click)="deletarConatato(contato)" float-end name="trash"></ion-icon>
+    </ion-item>
+  </ion-list> -->
+  <ion-list>
+    <ion-item *ngFor="let contato of listaContatos">
+      <ion-avatar item-start>
+        <!-- <img [src]="contato.doc.foto"> -->
+      </ion-avatar>
+      <h2>{{contato.nome}}</h2>
+      <h3>{{contato.telefone}}</h3>
+      <p>{{contato.nascimento}}</p>
       <ion-icon (click)="deletarConatato(contato)" float-end name="trash"></ion-icon>
     </ion-item>
   </ion-list>

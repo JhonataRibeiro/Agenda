@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http, HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb';
-import {Observable} from 'rxjs/Rx'
+import { Observable } from 'rxjs/Rx'
 
 /*
   Generated class for the DbAgendaProvider provider.
@@ -27,15 +28,71 @@ export class DbAgendaProvider {
     }));
   }
 
+  // adicionar(contato: any) {
+  //   return this.http.post('http://192.168.0.124/servico-agenda/inserir.php',contato)
+  //     .map(res => {
+  //       console.log(res);
+  //     })
+  // }
+
+  // public listar(): Observable<any> {
+  //   return Observable.from(this.localDb.allDocs({
+  //     include_docs: true
+  //   }))
+  // }
+
   public listar(): Observable<any> {
-    return Observable.from(this.localDb.allDocs({
-      include_docs: true
-    }))
+    let headers = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
+        , 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+        'Accept': 'application/json',
+        'content-type': 'application/json'
+      })
+    };
+
+    return this.http.get('http://192.168.0.124/servico-agenda/listar.php')
+      .map(res => {
+        console.log(res);
+        return res;
+      })
   }
 
+
+
+  // public removeContato(contato): Observable<any> {
+  //   console.log("removendo: ", contato.doc._id)
+  //   return Observable.from(this.localDb.remove(contato.doc._id, contato.doc._rev))
+  // }
+
   public removeContato(contato): Observable<any> {
-    console.log("removendo: ", contato.doc._id)
-    return Observable.from(this.localDb.remove(contato.doc._id, contato.doc._rev))
+    // console.log("removendo: ", contato.doc._id)
+    // return Observable.from(this.localDb.remove(contato.doc._id, contato.doc._rev))
+    return this.http.get(`http://192.168.0.124/servico-agenda/deletar.php?id=${contato.id}`)
+      .map(res => {
+        console.log(res);
+        return res;
+      })
+  }
+
+  public handleError() {
+    console.log("msg");
+  }
+
+  public adicionarContato(contato:any): Observable<any>{
+    let headers = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*', 
+        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+        'Accept': 'application/json',
+        'Content-Type' : 'application/json'
+      })
+    };
+    return this.http.post("/agenda/inserir.php",contato,headers)
+      .map(res => {
+        console.log(res);
+        return res;
+      })
   }
 
 

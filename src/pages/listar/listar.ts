@@ -29,8 +29,9 @@ export class ListarPage {
   listarConatatos(){
     this.dbAgendaProvider.listar().subscribe(
       data => {
-        this.listaContatos = [] = data.rows;
-        console.log(this.listaContatos);
+        console.log(data);
+        this.listaContatos = [] = data;
+        // console.log(this.listaContatos);
       },err=>{
         console.log("error", err)
       }
