@@ -51,7 +51,7 @@ export class DbAgendaProvider {
       })
     };
 
-    return this.http.get('http://192.168.0.124/servico-agenda/listar.php')
+    return this.http.get('http://localhost/servico-agenda/listar.php')
       .map(res => {
         console.log(res);
         return res;

@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path":"/agenda",
-      "proxyUrl": "http://192.168.0.124/servico-agenda"
+      "proxyUrl": "http://localhost/servico-agenda"
     }
   ]
 }
