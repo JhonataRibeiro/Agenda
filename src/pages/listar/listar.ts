@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbAgendaProvider } from '../../providers/db-agenda/db-agenda';
+import * as jsPDF from 'jspdf'
 
 /**
  * Generated class for the ListarPage page.
@@ -17,31 +18,31 @@ import { DbAgendaProvider } from '../../providers/db-agenda/db-agenda';
 })
 export class ListarPage {
 
-  public listaContatos:Array<any> = [];
+  public listaContatos: Array<any> = [];
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public dbAgendaProvider:DbAgendaProvider) {
-      this.listarConatatos();
+    public dbAgendaProvider: DbAgendaProvider) {
+    this.listarConatatos();
   }
 
-  listarConatatos(){
+  listarConatatos() {
     this.dbAgendaProvider.listar().subscribe(
       data => {
         this.listaContatos = [] = data;
         console.log("listar=> ", this.listaContatos);
-      },err=>{
+      }, err => {
         console.log("error", err)
       }
     )
   }
 
-  deletarConatato(contato){
+  deletarConatato(contato) {
     this.dbAgendaProvider.removeContato(contato).subscribe(
       data => {
         this.listarConatatos();
-      },err=>{
+      }, err => {
         console.log("error", err)
       }
     )
@@ -51,9 +52,9 @@ export class ListarPage {
     console.log('ionViewDidLoad ListarPage');
   }
 
-  pesquisar(searchbar){
+  pesquisar(searchbar) {
     let termo = searchbar.srcElement.value;
-    if(termo == ''){
+    if (termo == '') {
       this.listarConatatos();
       return;
     }
@@ -61,10 +62,19 @@ export class ListarPage {
       data => {
         this.listaContatos = [] = data;
         console.log("pesquisar=> ", this.listaContatos);
-      },err=>{
+      }, err => {
         console.log("error", err)
       }
     )
   }
+
+  imprimirPdf(contato) {
+    var doc = new jsPDF()
+    doc.text('Nome:' + contato.nome,10,10);
+    doc.text('Nascimento:' + contato.nascimento,10,20);
+    doc.text('Telefone:' + contato.telefone,10,30);
+    doc.save('contato.pdf')
+  }
+
 
 }

@@ -35,7 +35,8 @@
       <h2>{{contato.nome}}</h2>
       <h3>{{contato.telefone}}</h3>
       <p>{{contato.nascimento}}</p>
-      <ion-icon (click)="deletarConatato(contato)" float-end name="trash"></ion-icon>
+      <ion-icon margin (click)="deletarConatato(contato)" float-end name="trash"></ion-icon> 
+      <ion-icon margin (click)="imprimirPdf(contato)" float-end name="md-print"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>
