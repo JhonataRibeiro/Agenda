@@ -51,7 +51,8 @@ export class ListarPage {
     console.log('ionViewDidLoad ListarPage');
   }
 
-  pesquisar(termo){
+  pesquisar(searchbar){
+    let termo = searchbar.srcElement.value;
     if(termo == ''){
       this.listarConatatos();
       return;
