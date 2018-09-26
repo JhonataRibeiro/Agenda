@@ -42,14 +42,14 @@ export class DbAgendaProvider {
   // }
 
   public listar(): Observable<any> {
-    let headers = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*'
-        , 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-        'Accept': 'application/json',
-        'content-type': 'application/json'
-      })
-    };
+    // let headers = {
+    //   headers: new HttpHeaders({
+    //     'Access-Control-Allow-Origin': '*'
+    //     , 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+    //     'Accept': 'application/json',
+    //     'content-type': 'application/json'
+    //   })
+    // };
 
     return this.http.get('http://localhost/servico-agenda/listar.php')
       .map(res => {
@@ -68,7 +68,7 @@ export class DbAgendaProvider {
   public removeContato(contato): Observable<any> {
     // console.log("removendo: ", contato.doc._id)
     // return Observable.from(this.localDb.remove(contato.doc._id, contato.doc._rev))
-    return this.http.get(`http://192.168.0.124/servico-agenda/deletar.php?id=${contato.id}`)
+    return this.http.get(`http://localhost/servico-agenda/deletar.php?id=${contato.id}`)
       .map(res => {
         console.log(res);
         return res;
@@ -89,6 +89,14 @@ export class DbAgendaProvider {
       })
     };
     return this.http.post("/agenda/inserir.php",contato,headers)
+      .map(res => {
+        console.log(res);
+        return res;
+      })
+  }
+
+  public pesquisar(termo): Observable<any> {
+    return this.http.get(`http://localhost/servico-agenda/pesquisar.php?termo=${termo}`)
       .map(res => {
         console.log(res);
         return res;

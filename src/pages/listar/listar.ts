@@ -29,9 +29,8 @@ export class ListarPage {
   listarConatatos(){
     this.dbAgendaProvider.listar().subscribe(
       data => {
-        console.log(data);
         this.listaContatos = [] = data;
-        // console.log(this.listaContatos);
+        console.log("listar=> ", this.listaContatos);
       },err=>{
         console.log("error", err)
       }
@@ -50,6 +49,21 @@ export class ListarPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListarPage');
+  }
+
+  pesquisar(termo){
+    if(termo == ''){
+      this.listarConatatos();
+      return;
+    }
+    this.dbAgendaProvider.pesquisar(termo).subscribe(
+      data => {
+        this.listaContatos = [] = data;
+        console.log("pesquisar=> ", this.listaContatos);
+      },err=>{
+        console.log("error", err)
+      }
+    )
   }
 
 }
