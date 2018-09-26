@@ -96,6 +96,7 @@ export class DbAgendaProvider {
   }
 
   public pesquisar(termo): Observable<any> {
+    console.log("termo", termo);
     return this.http.get(`http://localhost/servico-agenda/pesquisar.php?termo=${termo}`)
       .map(res => {
         console.log(res);
